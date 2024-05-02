@@ -6,7 +6,7 @@
 void declareDataObjs(){
 
 	for(int i = 0; i< reco_Ehit.size(); i++){
-		reco_Ehit[i] = new TH1F( Form("reco_Ehit_%i",i), Form("(E_{reco}-E_{mc})/E_{mc} (hits) %.0f GeV; #DeltaE/E",enSteps[i]), 40,-0.06,0.06);
+		reco_Ehit[i] = new TH1F( Form("reco_Ehit_%i",i), Form("(E_{reco}-E_{mc})/E_{mc} (hits) %.0f GeV; #DeltaE/E",enSteps[i]), 60,-0.09,0.09);
 //		reco_Epnd[i] = new TH1F( Form("reco_Epnd_%i",i), Form("(E_{reco}-E_{mc})/E_{mc} (Pandora) %.0f GeV; #DeltaE/E",enSteps[i]), 50,-0.06,0.06);
 		reco_pTkMc[i] = new TH1F( Form("reco_pTkMc_%i",i), Form("(p_{reco}-p_{mc})/p_{mc} (ACTS) %.0f GeV; #Deltap/p",enSteps[i]), 50,-0.09,0.09);
 		reco_pTkHt[i] = new TH1F( Form("reco_pTkHt_%i",i), Form("(E_{hits}-E_{trk})/E_{trk} (ACTS+hits) %.0f GeV; #DeltaE/E",enSteps[i]), 50,-0.09,0.09);

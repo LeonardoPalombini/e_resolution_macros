@@ -49,7 +49,8 @@ int resol(double R = 0.1, const char* file = "../data/e_1-100gev_tot_sim.root"){
 /*	branch_caloData(ecBarrelTuple, ecBarHits);	
 	branch_caloData(ecEndcapTuple, ecEndHits);	
 	branch_caloData(hcBarrelTuple, hcBarHits);	
-	branch_caloData(hcEndcapTuple, hcEndHits);	
+	branch_caloData(hcEndcapTuple, hcEndHits);		
+	branch_caloData(hcRingTuple, hcRinHits);	
 	branch_trackerData(vdxBarrelTuple, vxBarHits);
 	branch_trackerData(vdxEndcapTuple, vxEndHits);
 	branch_trackerData(itBarrelTuple, itBarHits);
@@ -62,6 +63,7 @@ int resol(double R = 0.1, const char* file = "../data/e_1-100gev_tot_sim.root"){
 	branch_caloSimData(ecEndcapSimTuple, ecEndSimHits);	
 	branch_caloSimData(hcBarrelSimTuple, hcBarSimHits);	
 	branch_caloSimData(hcEndcapSimTuple, hcEndSimHits);	
+	branch_caloSimData(hcRingSimTuple, hcRinSimHits);	
 	branch_trackerSimData(vdxBarrelSimTuple, vxBarSimHits);
 	branch_trackerSimData(vdxEndcapSimTuple, vxEndSimHits);
 	branch_trackerSimData(itBarrelSimTuple, itBarSimHits);
@@ -79,9 +81,9 @@ int resol(double R = 0.1, const char* file = "../data/e_1-100gev_tot_sim.root"){
 
 //plot (trk-mc)/mc momentum vs E and Theta
 	TCanvas* d0 = new TCanvas();
-	gPad->Divide(5,4);
+	gPad->Divide(10,5);
 	TCanvas* d1 = new TCanvas();
-	gPad->Divide(5,3);
+	gPad->Divide(8,5);
 	for(int i = 0; i < enSteps.size(); i++){
 		d0->cd(i+1);
 		reco_pTkMc[i]->Draw();
@@ -110,11 +112,11 @@ int resol(double R = 0.1, const char* file = "../data/e_1-100gev_tot_sim.root"){
 
 //plot (hits-mc)/mc energy and (hits-trk)/trk energy vs E and Theta
 	TCanvas* d3 = new TCanvas();
-	gPad->Divide(5,4);
+	gPad->Divide(10,5);
 	TCanvas* d4 = new TCanvas();
-	gPad->Divide(5,4);
+	gPad->Divide(10,5);
 	TCanvas* d5 = new TCanvas();
-	gPad->Divide(5,3);
+	gPad->Divide(8,5);
 	for(int i = 0; i < enSteps.size(); i++){
 		d3->cd(i+1);
 		reco_Ehit[i]->Draw();
@@ -129,7 +131,7 @@ int resol(double R = 0.1, const char* file = "../data/e_1-100gev_tot_sim.root"){
 //fit calo energy and track-calo matching spectra for resolution and efficiency	
 	fitResolEff(reco_Ehit, resE_vsE, NULL, -.015, .01, -.04, .025, 'e', 'f');
 	fitResolEff(reco_pTkHt, NULL, effPHt_vsE, -.015, .01, -.025, .02, 'e');
-	fitResolEff(reco_pTkHt_th, NULL, effPHt_vsTh, -.015, .01, -.04, .02, 't');
+	fitResolEff(reco_pTkHt_th, NULL, effPHt_vsTh, -.015, .01, -.04, .025, 't');
 
 
 //plot final resolutions and efficiencies

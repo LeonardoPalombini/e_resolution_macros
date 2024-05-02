@@ -19,6 +19,7 @@
 	TTree* ecEndcapTuple;
 	TTree* hcBarrelTuple;
 	TTree* hcEndcapTuple;
+	TTree* hcRingTuple;
 	
 //trees sim hits
 	TTree* vdxBarrelSimTuple;
@@ -31,6 +32,7 @@
 	TTree* ecEndcapSimTuple;
 	TTree* hcBarrelSimTuple;
 	TTree* hcEndcapSimTuple;
+	TTree* hcRingSimTuple;
 
 //branches' addresses MC RC
 	particleMC partMC;
@@ -49,6 +51,7 @@
 	caloData ecEndHits;
 	caloData hcBarHits;
 	caloData hcEndHits;
+	caloData hcRinHits;
 //branches' addresses SimHits		
 	trackerData vxBarSimHits;
 	trackerData vxEndSimHits;
@@ -60,12 +63,14 @@
 	caloData ecEndSimHits;
 	caloData hcBarSimHits;
 	caloData hcEndSimHits;	
+	caloData hcEndRinHits;	
 	
 
 //data containers
-//	vector<double> enSteps{10.,50.,100.,150.,200.,250.,300.,350.,400.,450.,500.,550.,600.,650.,700.,750.,800.,850.,900.,950.};
-//	vector<double> enSteps{5.,15.,25,35.,45.,55.,65.,75.,85.,95.};
-//	vector<double> thSteps{15.,25.,45.,55.,65.,75.,85.};
+/*	vector<double> enSteps{10.,30.,50.,70.,90.,110.,130.,150.,170.,190.,210.,230.,250.,270.,290.,310.,330.,350.,370.,390.,410.,430.,450.,470.,490.,
+						   510.,530.,550.,570.,590.,610.,630.,650.,670.,690.,710.,30.,750.,770.,790.,810.,830.,850.,870.,890.,910.,930.,950.,970.,990.};*/
+/*	vector<double> thSteps{11.,13.,15.,17.,19.,21.,23.,25.,27.,29.,31.,33.,35.,37.,39.,41.,43.,45.,47.,49.,51.,53.,55.,57.,59.,61.,63.,65.,67.,69.,
+						   71.,73.,75.,77.,79.,81.,83.,85.,87.,89.};*/
 	vector<double> enSteps{2.5,7.5,12.5,17.5,22.5,27.5,32.5,37.5,42.5,47.5,52.5,57.5,62.5,67.5,72.5,77.5,82.5,87.5,92.5,97.5};
 	vector<double> thSteps{12.5,17.5,22.5,27.5,42.5,47.5,52.5,57.5,62.5,67.5,72.5,77.5,82.5,87.5};
 	

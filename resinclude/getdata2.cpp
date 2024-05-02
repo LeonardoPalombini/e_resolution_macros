@@ -45,7 +45,7 @@ int anaTracks(double cutR = 0.05){
 		
 		for(int est = 0; est < enSteps.size(); est++){
 			midE = enSteps[est];
-//			dE = 10. * sqrt( midE / 10. ); for 1-1000 gev
+//			dE = 20.; //for			
 			dE = 5.; //for 1-100 gev
 			
 			if(mcE <= (midE-0.5*dE) || mcE > (midE+0.5*dE)) continue;
@@ -59,7 +59,7 @@ int anaTracks(double cutR = 0.05){
 //			maxEta = getEtafromTheta(thSteps[tst]-2.5);
 			theta = mcTheta * 180 / 3.14159;
 			theta = (theta<90.) ? theta : 180.-theta;
-			if(theta <= (thSteps[tst]-2.5) || theta > (thSteps[tst]+2.5)) continue;
+			if(theta <= (thSteps[tst]-1.) || theta > (thSteps[tst]+1.)) continue;
 //			if(abs(mcEta) <= minEta || abs(mcEta) > maxEta) continue;
 			
 			reco_pTkMc_th[tst]->Fill( (trackPi - mcP)/mcP );

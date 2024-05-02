@@ -33,6 +33,8 @@ int getCalibration(double th0, double th1, double R = 0.2){
 			cout << "Error:: Event number inconsistency!"<<endl;
 			return 9;
 		}
+		mcTheta = getTheta( partMC.mox[0], partMC.moy[0], partMC.moz[0] ) * 180. / 3.14159;
+		if(!(mcTheta > th0 && mcTheta < th1)) continue;
 		
 		mcE = partMC.e[0];
 		mcEta = getEta( partMC.mox[0], partMC.moy[0], partMC.moz[0] );
@@ -43,11 +45,16 @@ int getCalibration(double th0, double th1, double R = 0.2){
 		recoEnergy = PNDrecoEnergy( mcEta, mcPhi, 0.01 );
 		
 		//mcTheta = getTheta(partMC.mox[0], partMC.moy[0], partMC.moz[0]) * 180. / 3.14159;	//mc cheat
-		mcTheta = getTheta(trkRC.sx[ascTrk], trkRC.sy[ascTrk], trkRC.sz[ascTrk]) * 180. / 3.14159;
 		
-		ngr = (int)( manEnergy / 10.);
-		if(mcTheta > th0 && mcTheta < th1) hitcal_vsE[ngr]->Fill(mcE/manEnergy);
-
+		ngr = -1;
+		for(int j = 0; j < enSteps.size(); j++){
+			if(abs(enSteps[j]-mcE)<2.5) ngr = j;
+		}
+		if(ngr < 0) continue;
+		
+		hitcal_vsE[ngr]->Fill(mcE/manEnergy);
+		hitrad_vsE[ngr]->Add(hitrad_temp);
+		hitrad_temp->Reset();
 	}
 
 	

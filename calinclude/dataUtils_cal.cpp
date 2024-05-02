@@ -148,6 +148,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(ecBarSimHits.x[iEB], ecBarSimHits.y[iEB]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
+		if(ecBarSimHits.e[iEB]>thr) hitrad_temp->Fill(dR);
 		if(dR < cutR && ecBarSimHits.e[iEB]>thr) sumE += ecBarSimHits.e[iEB];
 	}
 	
@@ -157,6 +158,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(ecEndSimHits.x[iEE], ecEndSimHits.y[iEE]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
+		if(ecBarSimHits.e[iEE]>thr) hitrad_temp->Fill(dR);
 		if(dR < cutR && ecEndSimHits.e[iEE]>thr) sumE += ecEndSimHits.e[iEE];
 	}
 	
@@ -166,6 +168,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(hcBarSimHits.x[iHB], hcBarSimHits.y[iHB]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
+		if(ecBarSimHits.e[iHB]>thr) hitrad_temp->Fill(dR);
 		if(dR < cutR && hcBarSimHits.e[iHB]>thr) sumE += hcBarSimHits.e[iHB]; //assume same as ecal
 	}
 	
@@ -175,6 +178,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(hcEndSimHits.x[iHE], hcEndSimHits.y[iHE]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
+		if(ecBarSimHits.e[iHE]>thr) hitrad_temp->Fill(dR);
 		if(dR < cutR && hcEndSimHits.e[iHE]>thr) sumE += hcEndSimHits.e[iHE];
 	}
 	

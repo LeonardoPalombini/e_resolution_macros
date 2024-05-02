@@ -182,7 +182,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(ecBarSimHits.x[iEB], ecBarSimHits.y[iEB]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
-		if(dR < cutR && ecBarSimHits.e[iEB]>thr) sumE += ecBarSimHits.e[iEB];
+		if(dR < cutR && ecBarSimHits.e[iEB]>thr) sumE += ecBarSimHits.e[iEB] * 1.0672142727;
 	}
 	
 	for(int iEE = 0; iEE < ecEndSimHits.nhits; iEE++){
@@ -191,7 +191,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(ecEndSimHits.x[iEE], ecEndSimHits.y[iEE]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
-		if(dR < cutR && ecEndSimHits.e[iEE]>thr) sumE += ecEndSimHits.e[iEE];
+		if(dR < cutR && ecEndSimHits.e[iEE]>thr) sumE += ecEndSimHits.e[iEE] * 1.0672142727;
 	}
 	
 	for(int iHB = 0; iHB < hcBarSimHits.nhits; iHB++){
@@ -200,7 +200,7 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(hcBarSimHits.x[iHB], hcBarSimHits.y[iHB]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
-		if(dR < cutR && hcBarSimHits.e[iHB]>thr) sumE += hcBarSimHits.e[iHB]; //assume same as ecal
+		if(dR < cutR && hcBarSimHits.e[iHB]>thr) sumE += hcBarSimHits.e[iHB] * 49.2031079063;
 	}
 	
 	for(int iHE = 0; iHE < hcEndSimHits.nhits; iHE++){
@@ -209,13 +209,22 @@ double coneSimHitEnergy(int bestTS = 3, double cutR = 0.2, double thr = 0.002){
 		hitPhi = getPhi(hcEndSimHits.x[iHE], hcEndSimHits.y[iHE]);
 		
 		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
-		if(dR < cutR && hcEndSimHits.e[iHE]>thr) sumE += hcEndSimHits.e[iHE];
+		if(dR < cutR && hcEndSimHits.e[iHE]>thr) sumE += hcEndSimHits.e[iHE] * 53.6263377733;
 	}
 	
-	trkTheta = trkTheta *180./3.14159;
+	for(int iHR = 0; iHR < hcRinSimHits.nhits; iHR++){
+		
+		hitEta = getEta(hcRinSimHits.x[iHR], hcRinSimHits.y[iHR], hcRinSimHits.z[iHR]);
+		hitPhi = getPhi(hcRinSimHits.x[iHR], hcRinSimHits.y[iHR]);
+		
+		dR = sqrt(pow(hitEta-trkEta,2)+pow(hitPhi-trkPhi,2));
+		if(dR < cutR && hcRinSimHits.e[iHR]>thr) sumE += hcRinSimHits.e[iHR] * 62.2125698179;
+	}
+	
+	/*trkTheta = trkTheta *180./3.14159;
 	if(trkTheta > 36.5 && trkTheta < 143.5) sumE = getEneBarrel(sumE, trkTheta);
 	else if(trkTheta < 36.5 || trkTheta > 143.5) sumE = getEneEndcap(sumE, trkTheta);
-	else sumE = 0.;
+	else sumE = 0.; correction from calib*/	
 	
 	return sumE;
 }

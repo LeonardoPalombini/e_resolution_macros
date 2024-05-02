@@ -63,7 +63,7 @@
 	
 
 //data containers
-//	vector<double> enSteps{10.,50.,100.,150.,200.,250.,300.,350.,400.,450.,500.,550.,600.,650.,700.,750.,800.,850.,900.,950.};
+	vector<double> enSteps{2.5,7.5,12.5,17.5,22.5,27.5,32.5,37.5,42.5,47.5,52.5,57.5,62.5,67.5,72.5,77.5,82.5,87.5,92.5,97.5};
 //	vector<double> enSteps{5.,15.,25,35.,45.,55.,65.,75.,85.,95.};
 //	vector<TH1F*> reco_Ehit(enSteps.size());
 //	vector<TH1F*> reco_Epnd(enSteps.size());
@@ -71,8 +71,12 @@
 //	TGraphErrors* resolE_vsE;
 //	TGraphErrors* resolE_vsE_pnd;
 	
-	vector<TH1F*> hitcal_vsE(10);
+	vector<TH1F*> hitcal_vsE(enSteps.size());
 	TGraphErrors* hitcal_gr;
+	
+	vector<TH1F*> hitrad_vsE(enSteps.size());
+	TH1F* hitrad_temp;
+	TGraphErrors* hitrad_gr;
 	
 
 //calibration values per angle range
